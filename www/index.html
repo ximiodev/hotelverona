@@ -11,7 +11,7 @@
 			document.addEventListener("deviceready",onDeviceReady,false);
 			function onDeviceReady(){
 				var push = PushNotification.init({ 
-					"android": {}
+					"android": { senderID: "898486557686"}
 				});
 				push.on('registration', function(data) {
 					console.log(data.registrationId);
