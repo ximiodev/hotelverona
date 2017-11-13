@@ -13,9 +13,7 @@
             "id": "phonegap-plugin-push@2.1.0"
         },
         "is_top_level": true,
-        "variables": {
-            "SENDER_ID": "898486557686"
-        }
+        "variables": {}
     },
     "cordova-plugin-console": {
         "source": {
@@ -44,7 +42,7 @@
     "cordova-plugin-fcm": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-fcm"
+            "id": "cordova-plugin-fcm@2.1.2"
         },
         "is_top_level": true,
         "variables": {}
@@ -52,7 +50,7 @@
     "cordova-plugin-firebase": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-firebase"
+            "id": "cordova-plugin-firebase@0.1.24"
         },
         "is_top_level": true,
         "variables": {}
