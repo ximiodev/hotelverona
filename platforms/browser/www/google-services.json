@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "898486557686",
+    "firebase_url": "https://gran-hotel-verona.firebaseio.com",
+    "project_id": "gran-hotel-verona",
+    "storage_bucket": "gran-hotel-verona.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898486557686:android:9bc8a0f7b484bd7c",
+        "android_client_info": {
+          "package_name": "com.ar.granhotelverona"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "898486557686-65a0tv4rddbm9d69l2nk2k504oal43vi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-KD531r11QH5gacmXbtndcTVvtSuiNRk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
