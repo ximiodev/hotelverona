@@ -33,7 +33,6 @@
 					});
 
 					push.on('notification', function(data) {
-						alert(data.title+" Message: " +data.message);
 						console.log(data.title+" Message: " +data.message);
 						navigator.notification.alert(
 							data.message,         // message
@@ -44,7 +43,6 @@
 					});
 
 					push.on('error', function(e) {
-						alert(e);
 						document.getElementById("gcm_id").innerHTML = e;
 					});
 				}
