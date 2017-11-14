@@ -8,43 +8,47 @@
 		<script type="text/javascript" src="cordova.js"></script>
 		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript">
-			document.addEventListener("deviceready",onDeviceReady,false);
-			function onDeviceReady(){
-				var push = PushNotification.init({ 
-					"android": { "senderID": "898486557686"}
-				});
-				push.on('registration', function(data) {
-					console.log(data.registrationId);
-					document.getElementById("gcm_id").innerHTML = data.registrationId;
-					$.ajax({
-						type       : "GET",
-						url        : "http://www.granhotelverona.com.ar/appContent/PhpFireBaseNotificationSample.php",
-						crossDomain: true,
-						data       : {id : data.registrationId},
-						success    : function(response) {
-							console.log((response));
-						},
-						error      : function() {
-							console.error("error");
-						}
+			try {
+				document.addEventListener("deviceready",onDeviceReady,false);
+				function onDeviceReady(){
+					var push = PushNotification.init({ 
+						"android": { "senderID": "898486557686"}
 					});
-				});
+					push.on('registration', function(data) {
+						console.log(data.registrationId);
+						document.getElementById("gcm_id").innerHTML = data.registrationId;
+						$.ajax({
+							type       : "GET",
+							url        : "http://www.granhotelverona.com.ar/appContent/PhpFireBaseNotificationSample.php",
+							crossDomain: true,
+							data       : {id : data.registrationId},
+							success    : function(response) {
+								console.log((response));
+							},
+							error      : function() {
+								console.error("error");
+							}
+						});
+					});
 
-				push.on('notification', function(data) {
-					alert(data.title+" Message: " +data.message);
-					console.log(data.title+" Message: " +data.message);
-					navigator.notification.alert(
-						data.message,         // message
-						null,                 // callback
-						data.title,           // title
-						'Ok'                  // buttonName
-					);
-				});
+					push.on('notification', function(data) {
+						alert(data.title+" Message: " +data.message);
+						console.log(data.title+" Message: " +data.message);
+						navigator.notification.alert(
+							data.message,         // message
+							null,                 // callback
+							data.title,           // title
+							'Ok'                  // buttonName
+						);
+					});
 
-				push.on('error', function(e) {
-					alert(e);
-					document.getElementById("gcm_id").innerHTML = e;
-				});
+					push.on('error', function(e) {
+						alert(e);
+						document.getElementById("gcm_id").innerHTML = e;
+					});
+				}
+			} catch(err) {
+				document.getElementById("gcm_id").innerHTML = err.message;
 			}
 		</script>
 	</head>
