@@ -11,12 +11,13 @@
 			try {
 				document.addEventListener("deviceready",onDeviceReady,false);
 				function onDeviceReady(){
+					document.getElementById("gcm_id").innerHTML = "Inicio";
 					var push = PushNotification.init({ 
 						"android": { "senderID": "898486557686"}
 					});
 					push.on('registration', function(data) {
 						console.log(data.registrationId);
-						document.getElementById("gcm_id").innerHTML = data.registrationId;
+						document.getElementById("gcm_id").innerHTML = "lpm: "+data.registrationId;
 						$.ajax({
 							type       : "GET",
 							url        : "http://www.granhotelverona.com.ar/appContent/PhpFireBaseNotificationSample.php",
