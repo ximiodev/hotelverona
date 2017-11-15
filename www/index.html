@@ -18,18 +18,7 @@
 					push.on('registration', function(data) {
 						console.log(data.registrationId);
 						document.getElementById("gcm_id").innerHTML = "lpm: "+data.registrationId;
-						$.ajax({
-							type       : "GET",
-							url        : "http://www.granhotelverona.com.ar/appContent/PhpFireBaseNotificationSample.php",
-							crossDomain: true,
-							data       : {id : data.registrationId},
-							success    : function(response) {
-								console.log((response));
-							},
-							error      : function() {
-								console.error("error");
-							}
-						});
+						
 					});
 
 					push.on('notification', function(data) {
@@ -40,6 +29,12 @@
 							data.title,           // title
 							'Ok'                  // buttonName
 						);
+						document.getElementById("gcm_id").innerHTML = "<b>"+data.title+"</b>"+data.message;
+						push.setApplicationIconBadgeNumber(() => {
+							console.log('success');
+						}, () => {
+							console.log('error');
+						}, data.count);
 					});
 
 					push.on('error', function(e) {
