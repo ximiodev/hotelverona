@@ -30,16 +30,17 @@
 							'Ok'                  // buttonName
 						);
 						document.getElementById("gcm_id").innerHTML = "<b>"+data.title+"</b>"+data.message;
-						push.setApplicationIconBadgeNumber(() => {
-							console.log('success');
-						}, () => {
-							console.log('error');
-						}, data.count);
 					});
 
 					push.on('error', function(e) {
 						document.getElementById("gcm_id").innerHTML = e;
 					});
+					
+					push.setApplicationIconBadgeNumber(() => {
+						console.log('success');
+					}, () => {
+						console.log('error');
+					}, 0);
 				}
 			} catch(err) {
 				document.getElementById("gcm_id").innerHTML = err.message;
