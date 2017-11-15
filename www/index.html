@@ -13,16 +13,6 @@
 				function onDeviceReady(){
 					document.getElementById("gcm_id").innerHTML = "Inicio";
 					
-					var url = "sonidos/ringo.mp3";
-
-					var getPathMedia = function () {
-						var path = window.location.pathname;
-						var phoneGapPath = path.substring(0, path.lastIndexOf('/') + 1);
-						// Return path at www folder
-						return 'file://' + phoneGapPath;
-					};
-					var media = new Media(url);
-					media.play();
 					
 					var push = PushNotification.init({ 
 						"android": { "senderID": "898486557686"}
