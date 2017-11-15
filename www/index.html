@@ -21,7 +21,7 @@
 						// Return path at www folder
 						return 'file://' + phoneGapPath;
 					};
-					var media = new Media(getPathMedia() + url);
+					var media = new Media(url);
 					media.play();
 					
 					var push = PushNotification.init({ 
