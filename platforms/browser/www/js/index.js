@@ -11,6 +11,7 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
+		document.getElementById("gcm_id").innerHTML = ("9999");
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
@@ -18,13 +19,13 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.setupPush();
+		document.getElementById("gcm_id").innerHTML = ("sadasd");
+        //~ app.setupPush();
     },
     setPushIn0: function() {
     },
     setupPush: function() {
         app.setPushIn0();
-		document.getElementById("gcm_id").innerHTML = ("sadasd");
 		var push = PushNotification.init({ 
 			"android": { "senderID": "898486557686"}
 		});
