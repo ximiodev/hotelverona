@@ -23,7 +23,7 @@ try {
 		onDeviceReady: function() {
 			user_platform = device.platform;
 			document.getElementById("gcm_id").innerHTML = ("sadasd");
-			//~ app.setupPush();
+			app.setupPush();
 		},
 		setPushIn0: function() {
 		},
