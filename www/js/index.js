@@ -1,7 +1,7 @@
 
 document.getElementById("gcm_id").innerHTML = ("ytpolopa");
 try {
-	var user_platform = device.platform;
+	var user_platform ;
 	var baseURL = 'http://www.granhotelverona.com.ar/appContent/apiContenidos.php';
 	var app = {
 		// Application Constructor
@@ -21,6 +21,7 @@ try {
 		// The scope of 'this' is the event. In order to call the 'receivedEvent'
 		// function, we must explicitly call 'app.receivedEvent(...);'
 		onDeviceReady: function() {
+			user_platform = device.platform;
 			document.getElementById("gcm_id").innerHTML = ("sadasd");
 			//~ app.setupPush();
 		},
