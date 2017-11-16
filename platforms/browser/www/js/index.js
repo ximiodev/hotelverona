@@ -1,4 +1,4 @@
-var pushC;
+var push;
 var user_platform = device.platform;
 var baseURL = 'http://www.granhotelverona.com.ar/appContent/apiContenidos.php';
 var app = {
@@ -22,7 +22,7 @@ var app = {
     },
     setPushIn0: function() {
 		
-		pushC.setApplicationIconBadgeNumber(() => {
+		push.setApplicationIconBadgeNumber(() => {
 			console.log('success');
 		}, () => {
 			console.log('error');
@@ -31,16 +31,17 @@ var app = {
     setupPush: function() {
         
 					
-		pushC = PushNotification.init({ 
+			document.getElementById("gcm_id").innerHTML = ("sadasd");
+		push = PushNotification.init({ 
 			"android": { "senderID": "898486557686"}
 		});
-		pushC.on('registration', function(data) {
+		push.on('registration', function(data) {
 			var datos = {
 				'accion':'registrarDev',
 				'user_platform': user_platform,
 				'registrationId': data.registrationId
 			}
-			document.getElementById("gcm_id").innerHTML = console.log("Registrado");
+			document.getElementById("gcm_id").innerHTML = ("Registrado");
 			 
 			 $.ajax({
 				type: 'POST',
@@ -48,7 +49,7 @@ var app = {
 				dataType: 'json',
 				url: baseURL,
 				success: function (data) {
-					document.getElementById("gcm_id").innerHTML = console.log("Res: "+data.res);
+					document.getElementById("gcm_id").innerHTML = ("Res: "+data.res);
 					if(data.res) {
 						console.log(data.res);
 					}
@@ -56,7 +57,7 @@ var app = {
 			  });
 		});
 
-		pushC.on('notification', function(data) {
+		push.on('notification', function(data) {
 			//~ console.log(data.title+" Message: " +data.message);
 			navigator.notification.alert(
 				data.message,         // message
@@ -67,7 +68,7 @@ var app = {
 			document.getElementById("gcm_id").innerHTML = "<b>"+data.title+"</b>"+data.message;
 		});
 
-		pushC.on('error', function(e) {
+		push.on('error', function(e) {
 			document.getElementById("gcm_id").innerHTML = e;
 		});
     }
