@@ -1,6 +1,6 @@
-var push;
 var user_platform = device.platform;
 var baseURL = 'http://www.granhotelverona.com.ar/appContent/apiContenidos.php';
+try {
 var app = {
     // Application Constructor
     initialize: function() {
@@ -21,15 +21,6 @@ var app = {
         app.setupPush();
     },
     setPushIn0: function() {
-		
-		var push = PushNotification.init({ 
-			"android": { "senderID": "898486557686"}
-		});
-		push.setApplicationIconBadgeNumber(() => {
-			console.log('success');
-		}, () => {
-			console.log('error');
-		}, 0);
     },
     setupPush: function() {
         app.setPushIn0();
@@ -45,6 +36,11 @@ var app = {
 			}
 			document.getElementById("gcm_id").innerHTML = ("Registrado");
 			 
+			push.setApplicationIconBadgeNumber(() => {
+				console.log('success');
+			}, () => {
+				console.log('error');
+			}, 0);
 			 $.ajax({
 				type: 'POST',
 				data: datos,
@@ -75,3 +71,6 @@ var app = {
 		});
     }
 };
+} catch(err) {
+    document.getElementById("gcm_id").innerHTML = err.message;
+}
