@@ -1,21 +1,6 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+var pushC;
+var user_platform = device.platform;
+var baseURL = 'http://www.granhotelverona.com.ar/appContent/apiContenidos.php';
 var app = {
     // Application Constructor
     initialize: function() {
@@ -33,55 +18,55 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        console.log('Received Device Ready Event');
-        console.log('calling setup push');
         app.setupPush();
     },
+    setPushIn0: function() {
+		
+		pushC.setApplicationIconBadgeNumber(() => {
+			console.log('success');
+		}, () => {
+			console.log('error');
+		}, 0);
+    },
     setupPush: function() {
-        console.log('calling push init');
-        var push = PushNotification.init({
-            "android": {},
-            "browser": {
-				pushServiceURL: 'http://push.api.phonegap.com/v1/push'
-			  },
-            "ios": {
-                "sound": true,
-                "vibration": true,
-                "badge": true
-            }
-        });
-        console.log('after init');
+        
+					
+		pushC = PushNotification.init({ 
+			"android": { "senderID": "898486557686"}
+		});
+		pushC.on('registration', function(data) {
+			var datos = {
+				'accion':'registrarDev',
+				'user_platform': user_platform,
+				'registrationId': data.registrationId
+			}
+			 
+			 $.ajax({
+				type: 'POST',
+				data: datos,
+				dataType: 'json',
+				url: baseURL,
+				success: function (data) {
+					if(data.res) {
+						
+					}
+				}
+			  });
+		});
 
-        push.on('registration', function(data) {
-            console.log('registration event: ' + data.registrationId);
+		pushC.on('notification', function(data) {
+			//~ console.log(data.title+" Message: " +data.message);
+			navigator.notification.alert(
+				data.message,         // message
+				null,                 // callback
+				data.title,           // title
+				'Ok'                  // buttonName
+			);
+			document.getElementById("gcm_id").innerHTML = "<b>"+data.title+"</b>"+data.message;
+		});
 
-            var oldRegId = localStorage.getItem('registrationId');
-            if (oldRegId !== data.registrationId) {
-                // Save new registration ID
-                localStorage.setItem('registrationId', data.registrationId);
-                // Post registrationId to your app server as the value has changed
-            }
-
-            var parentElement = document.getElementById('registration');
-            var listeningElement = parentElement.querySelector('.waiting');
-            var receivedElement = parentElement.querySelector('.received');
-
-            listeningElement.setAttribute('style', 'display:none;');
-            receivedElement.setAttribute('style', 'display:block;');
-        });
-
-        push.on('error', function(e) {
-            console.log("push error = " + e.message);
-        });
-
-        push.on('notification', function(data) {
-            console.log('notification event');
-            navigator.notification.alert(
-                data.message,         // message
-                null,                 // callback
-                data.title,           // title
-                'Ok'                  // buttonName
-            );
-       });
+		pushC.on('error', function(e) {
+			document.getElementById("gcm_id").innerHTML = e;
+		});
     }
 };
