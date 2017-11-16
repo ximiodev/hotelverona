@@ -32,7 +32,7 @@ var app = {
 		}, 0);
     },
     setupPush: function() {
-        app.setPushIn0();
+        app.setPushIn0/(;
 		document.getElementById("gcm_id").innerHTML = ("sadasd");
 		var push = PushNotification.init({ 
 			"android": { "senderID": "898486557686"}

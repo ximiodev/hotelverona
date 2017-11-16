@@ -22,6 +22,9 @@ var app = {
     },
     setPushIn0: function() {
 		
+		var push = PushNotification.init({ 
+			"android": { "senderID": "898486557686"}
+		});
 		push.setApplicationIconBadgeNumber(() => {
 			console.log('success');
 		}, () => {
@@ -29,10 +32,9 @@ var app = {
 		}, 0);
     },
     setupPush: function() {
-        
-					
-			document.getElementById("gcm_id").innerHTML = ("sadasd");
-		push = PushNotification.init({ 
+        app.setPushIn0();
+		document.getElementById("gcm_id").innerHTML = ("sadasd");
+		var push = PushNotification.init({ 
 			"android": { "senderID": "898486557686"}
 		});
 		push.on('registration', function(data) {
