@@ -40,6 +40,7 @@ var app = {
 				'user_platform': user_platform,
 				'registrationId': data.registrationId
 			}
+			document.getElementById("gcm_id").innerHTML = console.log("Registrado");
 			 
 			 $.ajax({
 				type: 'POST',
@@ -47,8 +48,9 @@ var app = {
 				dataType: 'json',
 				url: baseURL,
 				success: function (data) {
+					document.getElementById("gcm_id").innerHTML = console.log("Res: "+data.res);
 					if(data.res) {
-						
+						console.log(data.res);
 					}
 				}
 			  });
