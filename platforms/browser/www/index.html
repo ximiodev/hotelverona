@@ -8,15 +8,51 @@
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
 		<!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
 		<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/main.css">
 	</head>
-	<body>
-		<h1>Push Notification </h1>
-		Estado : <br/>
-		<p id="gcm_id"></p>
+	<body class="fndCont">
+		
+		<div class="menu" id="left-panel">
+			<button class="close btnCerrarM" data-quien="menu"><span aria-hidden="true">&times;</span></button>
+			<ul class="botones">
+				<li><a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+				<li><a href="#">ACTIVIDADES</a></li>
+				<li><a href="#">TOURS</a></li>
+				<li><a href="#">SPA</a></li>
+				<li><a href="#">RESERVAS</a></li>
+				<li><a href="#">PROMOCIONES</a></li>
+				<li><a href="#">REGALOS</a></li>
+			</ul>
+		</div>
+		<div class="submenu" id="right-panel">
+			<button class="close btnCerrarM" data-quien="submenu"><span aria-hidden="true">&times;</span></button>
+			<ul class="botones">
+				<li><a href="#">USUARIOS</a></li>
+				<li><a href="#">NOTICIAS</a></li>
+			</ul>
+		</div>
+		<div class="container-fluid" id="elcontenido">
+			<div class="row">
+				<button type="button" class="btnMenu"></button>
+				<button type="button" class="btnMenuUser"></button>
+				<div class="logo"></div>
+				<div class="botoneraHome">
+					<a class="col-xs-4 btnAct" href="#"></a>
+					<a class="col-xs-4 btnTou" href="#"></a>
+					<a class="col-xs-4 btnSpa" href="#"></a>
+					<a class="col-xs-4 btnRes" href="#"></a>
+					<a class="col-xs-4 btnPro" href="#"></a>
+					<a class="col-xs-4 btnReg" href="#"></a>
+				</div>
+			</div>
+		</div>
 	</body>
 	<script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile-1.3.2.min.js"></script>
+	<script type="text/javascript" src="js/funciones.js"></script>
     <script type="text/javascript">
         app.initialize();
     </script>

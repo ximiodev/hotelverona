@@ -266,6 +266,20 @@ module.exports = [
         "clobbers": [
             "window.Media"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device/www/device.js",
+        "id": "cordova-plugin-device.device",
+        "pluginId": "cordova-plugin-device",
+        "clobbers": [
+            "device"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device/src/browser/DeviceProxy.js",
+        "id": "cordova-plugin-device.DeviceProxy",
+        "pluginId": "cordova-plugin-device",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -279,7 +293,8 @@ module.exports.metadata =
     "cordova-plugin-fcm": "2.1.2",
     "cordova-plugin-firebase": "0.1.24",
     "cordova-plugin-file": "5.0.0",
-    "cordova-plugin-media": "4.0.0"
+    "cordova-plugin-media": "4.0.0",
+    "cordova-plugin-device": "1.1.7"
 }
 // BOTTOM OF METADATA
 });

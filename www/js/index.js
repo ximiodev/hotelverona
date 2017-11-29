@@ -1,5 +1,4 @@
 
-document.getElementById("gcm_id").innerHTML = ("ytpolopa");
 try {
 	var user_platform ;
 	var baseURL = 'http://www.granhotelverona.com.ar/appContent/apiContenidos.php';
@@ -13,7 +12,6 @@ try {
 		// Bind any events that are required on startup. Common events are:
 		// 'load', 'deviceready', 'offline', and 'online'.
 		bindEvents: function() {
-			document.getElementById("gcm_id").innerHTML = ("9999");
 			document.addEventListener('deviceready', this.onDeviceReady, false);
 		},
 		// deviceready Event Handler
@@ -22,7 +20,6 @@ try {
 		// function, we must explicitly call 'app.receivedEvent(...);'
 		onDeviceReady: function() {
 			user_platform = device.platform;
-			document.getElementById("gcm_id").innerHTML = ("sadasd");
 			app.setupPush();
 		},
 		setPushIn0: function() {
@@ -38,7 +35,6 @@ try {
 					'user_platform': user_platform,
 					'registrationId': data.registrationId
 				}
-				document.getElementById("gcm_id").innerHTML = ("Registrado");
 				 
 				push.setApplicationIconBadgeNumber(() => {
 					console.log('success');
@@ -51,7 +47,7 @@ try {
 					dataType: 'json',
 					url: baseURL,
 					success: function (data) {
-						document.getElementById("gcm_id").innerHTML = ("Res: "+data.res);
+						//~ document.getElementById("gcm_id").innerHTML = ("Res: "+data.res);
 						if(data.res) {
 							console.log(data.res);
 						}
@@ -67,14 +63,14 @@ try {
 					data.title,           // title
 					'Ok'                  // buttonName
 				);
-				document.getElementById("gcm_id").innerHTML = "<b>"+data.title+"</b>"+data.message;
+				//~ document.getElementById("gcm_id").innerHTML = "<b>"+data.title+"</b>"+data.message;
 			});
 
 			push.on('error', function(e) {
-				document.getElementById("gcm_id").innerHTML = e;
+				//~ document.getElementById("gcm_id").innerHTML = e;
 			});
 		}
 	};
 } catch(err) {
-    document.getElementById("gcm_id").innerHTML = err.message;
+    //~ document.getElementById("gcm_id").innerHTML = err.message;
 }
