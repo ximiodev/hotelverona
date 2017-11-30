@@ -10,7 +10,15 @@ $(document).ready(function() {
 		$( "#right-panel" ).animate( {right: "0"},300 );
 	});
     
-	$('.btnCerrarM').click(function(e) {
+	$('.btnMenuUserLink a').click(function(e) {
+		e.preventDefault();
+		$('.btnMenuUserLink').removeClass('activo');
+		$('.seccoinMenuUser').removeClass('secActiva');
+		$(this).parent().addClass('activo');
+		$('#'+$(this).data('secc')).addClass('secActiva');
+	});
+    
+	$('.btnCerrarM a').click(function(e) {
 		e.preventDefault();
 		var quien = $(this).data('quien');
 		if ( quien == "menu"  ) {

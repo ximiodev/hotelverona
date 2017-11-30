@@ -12,13 +12,11 @@ $(document).ready(function() {
     
 	$('.btnMenuUserLink a').click(function(e) {
 		e.preventDefault();
-		$('.btnMenuUserLink').removeClass('activo');
-		$('.seccoinMenuUser').removeClass('secActiva');
-		$(this).parent().addClass('activo');
-		$('#'+$(this).data('secc')).addClass('secActiva');
+		$('.btnMenuUserLink').remmoveClass('activa');
+		$('.seccoinMenuUser').remmoveClass('secActiva');
 	});
     
-	$('.btnCerrarM a').click(function(e) {
+	$('.btnCerrarM').click(function(e) {
 		e.preventDefault();
 		var quien = $(this).data('quien');
 		if ( quien == "menu"  ) {

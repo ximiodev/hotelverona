@@ -68,10 +68,6 @@ div.menu {
     background: #393c40;
 }
 
-.btnCerrarM a {
-	padding: 20px!important;
-}
-
 .btnCerrarM {
 	color: #FFF;
     opacity: 1;
@@ -95,12 +91,12 @@ div.menu .botones li {
 }
 
 div.menu .botones a {
-	padding: 20px 0px;
+	padding: 20px 30px;
 	color: #FFF;
 	display: block;
 	border-bottom: 1px solid #4d4d4d;
     font-family: 'museosans500';
-    font-size: 18px;
+    font-size: 20px;
     text-decoration: none;
 }
 
@@ -137,6 +133,7 @@ div.submenu .botones a {
 	padding: 20px 30px;
 	color: #FFF;
 	display: block;
+	border-bottom: 1px solid #4d4d4d;
     font-family: 'museosans500';
     text-decoration: none;
 }
@@ -164,7 +161,7 @@ li.btnMenuUserLink {
 	text-align: center;
 }
 
-li.btnMenuUserLink a:active::before, li.btnMenuUserLink.activo a::before {
+li.btnMenuUserLink a:active::before, li.btnMenuUserLink a.activo::before {
 	content: '';
 	
 	background: #d98d2c; /* Old browsers */
@@ -172,7 +169,7 @@ li.btnMenuUserLink a:active::before, li.btnMenuUserLink.activo a::before {
 	background: -webkit-linear-gradient(left,  #d98d2c 0%,#cf6528 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to right,  #d98d2c 0%,#cf6528 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d98d2c', endColorstr='#cf6528',GradientType=1 ); /* IE6-9 */
-	height: 10px;
+	height: 15px;
 	width: 100%;
 	position: absolute;
 	bottom: 0;
@@ -298,7 +295,6 @@ li.btnMenuUserLink a:active::before, li.btnMenuUserLink.activo a::before {
 .seccoinMenuUser {
 	padding: 20px;
 	text-align: center;
-	display: none;
 }
 
 .iconSeccion {
@@ -315,7 +311,6 @@ li.btnMenuUserLink a:active::before, li.btnMenuUserLink.activo a::before {
     font-size: 30px;
     font-weight: bold;
     margin: 10px;
-    line-height: 30px;
 }
 
 .txtMenuUser {
@@ -323,19 +318,4 @@ li.btnMenuUserLink a:active::before, li.btnMenuUserLink.activo a::before {
     color: #343939;
     font-size: 16px;
     margin: 10px;
-}
-
-
-.btnUserEntrar {
-    font-family: 'museosans500';
-	padding: 15px 50px;
-	background: #393c40;
-	text-align: center;
-	border: 0;
-	color: #FFF;
-	margin: 20px auto;
-}
-
-.secActiva {
-	display: block;
 }
