@@ -1,0 +1,341 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* RESET */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,sub,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {	margin:0;	padding:0;	border:0;	outline:0;	font-weight:inherit;	font-style:inherit;	font-size:100%;	font-family:inherit; }/* remember to define focus styles! */:focus {	outline:0;}body {	color:black;	background:white;}ol,ul {	list-style: none;}/* tables still need 'cellspacing="0"' in the markup */table {	border-collapse:separate;	border-spacing:0;}caption,th,td {	text-align:left;	font-weight:normal;}blockquote:before,blockquote:after,q:before,q:after {	content:"";}blockquote,q {	quotes: "" "";}a:link,a:visited {	text-decoration: none; border: 0px solid;}a:hover,a:active {	text-decoration: underline;}
+
+/* ------------------------------------------------ FUENTES ------------------------------------------------- */
+
+@font-face {
+    font-family: 'museosans500';
+    src: url('../fonts/museosans500.eot');
+    src: url('../fonts/museosans500.eot') format('embedded-opentype'),
+         url('../fonts/museosans500.woff2') format('woff2'),
+         url('../fonts/museosans500.woff') format('woff'),
+         url('../fonts/museosans500.ttf') format('truetype'),
+         url('../fonts/museosans500.svg#museosans500') format('svg');
+}
+
+
+html, body {
+	font-family: 'dax-regularregular', Arial, Helvetica, sans-serif;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	font-size: 14px;
+	line-height: 14px;
+	height: 100%;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.navbar-toggle .icon-bar {
+    background-color: rgb(56, 53, 53);
+}
+
+.navbar-toggle {
+    position: relative;
+    display: block;
+    float: right;
+    margin-right: 10px;
+    padding: 9px 10px;
+    margin-bottom: 8px;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid rgb(56, 53, 53);
+    border-radius: 4px;
+}
+
+
+div.menu {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: auto;
+    background: rgba(57, 60, 64, .4);
+    position: absolute;
+    top:0;
+    left:-100%;
+    z-index: 9999999;
+}
+
+.mencont {
+    width: 80%;
+    height: 100%;
+    background: #393c40;
+}
+
+.btnCerrarM a {
+	padding: 20px!important;
+}
+
+.btnCerrarM {
+	color: #FFF;
+    opacity: 1;
+}
+
+div.menu .botones li.btnCerrarM {
+	padding: 0;
+	background: #cf6528; /* Old browsers */
+	background: -moz-linear-gradient(top,  #cf6528 0%, #d98d2c 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #cf6528 0%,#d98d2c 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #cf6528 0%,#d98d2c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cf6528', endColorstr='#d98d2c',GradientType=0 ); /* IE6-9 */
+}
+
+div.menu .botones li {
+	padding: 0 20px;
+}
+
+.menu li a .fa-angle-down {
+    float: right;
+}
+
+div.menu .botones a {
+	padding: 20px 0px;
+	color: #FFF;
+	display: block;
+	border-bottom: 1px solid #4d4d4d;
+    font-family: 'museosans500';
+    font-size: 18px;
+    text-decoration: none;
+}
+
+div.submenu {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: auto;
+    background: #FFF;
+    position: absolute;
+    top:0;
+    right:-100%;
+    z-index: 9999999;
+}
+
+div.submenu .botones li.btnCerrarM {
+	padding: 0;
+	
+	background: #cf6528; /* Old browsers */
+	background: -moz-linear-gradient(top,  #cf6528 0%, #d98d2c 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #cf6528 0%,#d98d2c 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #cf6528 0%,#d98d2c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cf6528', endColorstr='#d98d2c',GradientType=0 ); /* IE6-9 */
+	
+	background: #d98d2c; /* Old browsers */
+	background: -moz-linear-gradient(left,  #d98d2c 0%, #cf6528 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left,  #d98d2c 0%,#cf6528 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  #d98d2c 0%,#cf6528 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d98d2c', endColorstr='#cf6528',GradientType=1 ); /* IE6-9 */
+
+}
+
+div.submenu .botones a {
+	padding: 20px 30px;
+	color: #FFF;
+	display: block;
+    font-family: 'museosans500';
+    text-decoration: none;
+}
+
+.fndMenuUser {
+	min-height: 180px;
+	width: 100%;
+	background: url(../images/fndMenuUser.jpg) center top no-repeat;
+	background-size: cover;
+	padding: 30px;
+}
+
+.userIcon {
+	height: 100px;
+	width: 100px;
+	background: url(../images/userIcon.png) center top no-repeat;
+	background-size: cover;
+}
+
+li.btnMenuUserLink {
+    width: 33.3333333%;
+    float: left;
+    position: relative;
+	background: #333;
+	text-align: center;
+}
+
+li.btnMenuUserLink a:active::before, li.btnMenuUserLink.activo a::before {
+	content: '';
+	
+	background: #d98d2c; /* Old browsers */
+	background: -moz-linear-gradient(left,  #d98d2c 0%, #cf6528 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left,  #d98d2c 0%,#cf6528 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  #d98d2c 0%,#cf6528 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d98d2c', endColorstr='#cf6528',GradientType=1 ); /* IE6-9 */
+	height: 10px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.ui-page {
+	overflow-x: hidden;
+	max-width: 100vw;
+	position: relative;
+}
+
+.ostra {
+	background: url(../images/iconoMenu.png) center center no-repeat;
+	background-size: cover;
+	overflow-x: hidden;
+	display: block;
+	width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    margin-left: -15px;
+}
+
+.fndCont {
+	background: url(../images/fndHome.jpg) center center no-repeat;
+	background-size: cover;
+	overflow-x: hidden;
+	max-width: 100vw;
+	position: relative;
+}
+
+.logo {
+	background: url(../images/logo.png) center center no-repeat;
+	background-size: contain;
+	width: 100%;
+	height: 150px;
+	margin: 100px auto;
+}
+
+.btnMenu {
+	background: url(../images/btnMenu.png) center center no-repeat;
+	background-size: cover;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	border: 0;
+}
+
+.btnMenuUser {
+	background: url(../images/btnSubmenu.png) center center no-repeat;
+	background-size: cover;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	border: 0;
+}
+
+.botoneraHome {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+.btnAct {
+	background: url(../images/btnActividades.png) center center no-repeat;
+	background-size: contain;
+	height: 120px;
+	position: relative;
+	display: block;
+}
+
+.btnTou {
+	background: url(../images/btnTours.png) center center no-repeat;
+	background-size: contain;
+	height: 120px;
+	position: relative;
+	display: block;
+}
+
+.btnSpa {
+	background: url(../images/btnSpa.png) center center no-repeat;
+	background-size: contain;
+	height: 120px;
+	position: relative;
+	display: block;
+}
+
+.btnRes {
+	background: url(../images/btnReservas.png) center center no-repeat;
+	background-size: contain;
+	height: 120px;
+	position: relative;
+	display: block;
+}
+
+.btnPro {
+	background: url(../images/btnPromociones.png) center center no-repeat;
+	background-size: contain;
+	height: 120px;
+	position: relative;
+	display: block;
+	text-indent: -99999999px;
+}
+
+.btnReg {
+	background: url(../images/btnRegalos.png) center center no-repeat;
+	background-size: contain;
+	height: 120px;
+	position: relative;
+	display: block;
+}
+
+.contenidoMenuUser {
+    clear: both;
+}
+
+.seccoinMenuUser {
+	padding: 20px;
+	text-align: center;
+	display: none;
+}
+
+.iconSeccion {
+	background: center center no-repeat;
+	background-size: contain;
+	width: 80px;
+	height: 80px;
+	margin: 20px auto;
+}
+
+.titMenuUser {
+    font-family: 'museosans500';
+    color: #343939;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 10px;
+    line-height: 30px;
+}
+
+.txtMenuUser {
+    font-family: 'museosans500';
+    color: #343939;
+    font-size: 16px;
+    margin: 10px;
+}
+
+
+.btnUserEntrar {
+    font-family: 'museosans500';
+	padding: 15px 50px;
+	background: #393c40;
+	text-align: center;
+	border: 0;
+	color: #FFF;
+	margin: 20px auto;
+}
+
+.secActiva {
+	display: block;
+}

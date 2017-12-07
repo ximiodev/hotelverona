@@ -5,6 +5,11 @@ $(document).ready(function() {
 		$( "#left-panel" ).animate( {left: "0"},300 );
 	});
     
+	$('.btnSpa').click(function(e) {
+		e.preventDefault();
+		$( "#contenedor" ).animate( {right: "0"},300 );
+	});
+    
 	$('.btnMenuUser').click(function(e) {
 		e.preventDefault();
 		$( "#right-panel" ).animate( {right: "0"},300 );
@@ -47,3 +52,25 @@ $(document).ready(function() {
 	$('.ui-loader').remove();
 	$('.ui-btn-inner').remove();
 });
+
+
+
+
+var onSuccess = function(result) {
+  console.log("Share completed? " + result.completed); // On Android apps mostly return false even while it's true
+  console.log("Shared to app: " + result.app); // On Android result.app is currently empty. On iOS it's empty when sharing is cancelled (result.completed=false)
+}
+
+var onError = function(msg) {
+  console.log("Sharing failed with message: " + msg);
+}
+
+function compartirEnlace(enlace) {
+	var options = {
+	  message: 'Gran Verona Hotel', // not supported on some apps (Facebook, Instagram)
+	  subject: 'Gran Verona Hotel', // fi. for email
+	  url: enlace,
+	  chooserTitle: 'Gran Verona Hotel' // Android only, you can override the default share sheet title
+	}
+	window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
+}

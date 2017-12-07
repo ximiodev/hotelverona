@@ -1,0 +1,77 @@
+@media (max-height: 550px) {
+	
+	.btnAct, .btnTou, .btnSpa, .btnRes, .btnPro, .btnReg {
+		height: 90px;
+	}
+	
+	.logo {
+		margin: 70px auto;
+	}
+
+	.fndMenuUser {
+		min-height: 120px;
+		padding: 20px;
+	}
+
+	.userIcon {
+		height: 70px;
+		width: 70px;
+	}
+}
+
+
+@media (max-height: 480px) {
+	
+	.btnAct, .btnTou, .btnSpa, .btnRes, .btnPro, .btnReg {
+		height: 80px;
+	}
+	
+	.logo {
+		height: 100px;
+		margin: 50px auto;
+	}
+
+	.fndMenuUser {
+		min-height: 70px;
+		padding: 10px;
+	}
+
+	.userIcon {
+		height: 50px;
+		width: 50px;
+	}
+	
+	div.submenu .botones a {
+		padding: 20px 10px;
+		font-size: 12px;
+    }
+    
+    .iconSeccion {
+		width: 40px;
+		height: 40px;
+		margin: 5px auto;
+	}
+	
+	.seccoinMenuUser {
+		padding: 10px;
+	}
+	
+	.titMenuUser {
+		font-size: 20px;
+		margin: 5px;
+		line-height: 20px;
+	}
+	
+	.btnUserEntrar {
+		padding: 10px 50px;
+		margin: 5px auto;
+	}
+}
+
+
+@media (max-height: 320px) {
+	
+	.btnAct, .btnTou, .btnSpa, .btnRes, .btnPro, .btnReg {
+		height: 60px;
+	}
+}

@@ -280,6 +280,22 @@ module.exports = [
         "id": "cordova-plugin-device.DeviceProxy",
         "pluginId": "cordova-plugin-device",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-socialsharing/www/SocialSharing.js",
+        "id": "cordova-plugin-socialsharing.SocialSharing",
+        "pluginId": "cordova-plugin-socialsharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-socialsharing/www/SocialSharing.js",
+        "id": "cordova-plugin-socialsharing.SocialSharing",
+        "pluginId": "cordova-plugin-socialsharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -294,7 +310,8 @@ module.exports.metadata =
     "cordova-plugin-firebase": "0.1.24",
     "cordova-plugin-file": "5.0.0",
     "cordova-plugin-media": "4.0.0",
-    "cordova-plugin-device": "1.1.7"
+    "cordova-plugin-device": "1.1.7",
+    "cordova-plugin-socialsharing": "4.3.81"
 }
 // BOTTOM OF METADATA
 });
