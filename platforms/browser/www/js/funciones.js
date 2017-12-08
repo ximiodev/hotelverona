@@ -184,11 +184,11 @@ function compartirEnlace(enlace) {
 	window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
 }
 
-function openMap(geocoords, label) {
+function openMap(geocoords, texto) {
 	if (device.platform=="iOS") {
 		window.open('maps://?q=' + geocoords, '_system');
 	} else {
-		var label = encodeURI('7 East Street'); // encode the label!
-		window.open('geo:0,0?q=' + geocoords + '(' + label + ')', '_system');
+		var label = encodeURI(texto); // encode the label!
+		window.open('geo:0,0?q=' + geocoords + '("' + label + '")', '_system');
 	}
 }
