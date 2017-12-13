@@ -2,12 +2,18 @@ $(document).ready(function() {
     
 	$('.btnMenu').click(function(e) {
 		e.preventDefault();
-		$( "#left-panel" ).animate( {left: "0"},300 );
+		$( "#left-panel" ).animate( {left: "0"},500 );
 	});
     
 	$('.botoneraHome a').click(function(e) {
 		e.preventDefault();
 		abrirSeccion($(this).attr('href'));
+	});
+    
+	$('#btnGalerias').click(function(e) {
+		e.preventDefault();
+		$( "#left-panel" ).animate( {left: "-100%"},500 );
+		abrirSeccion('galeria.html');
 	});
     
     
@@ -21,9 +27,15 @@ $(document).ready(function() {
 		abrirSeccion2('promociones_interna.html', $(this).data('promo'));
 	});
     
+	$('.contenidos').on('click', '.itemGalGen',function(e) {
+		e.preventDefault();
+		var cual = $(this).data('itemgal');
+		iniciarGaleria(cual);
+	});
+    
 	$('.btnMenuUser').click(function(e) {
 		e.preventDefault();
-		$( "#right-panel" ).animate( {right: "0"},300 );
+		$( "#right-panel" ).animate( {right: "0"},500 );
 	});
     
 	$('.btnMenuUserLink a').click(function(e) {
@@ -38,26 +50,26 @@ $(document).ready(function() {
 		e.preventDefault();
 		var quien = $(this).data('quien');
 		if ( quien == "menu"  ) {
-			$( "#left-panel" ).animate( {left: "-100%"},100 );
+			$( "#left-panel" ).animate( {left: "-100%"},500 );
 		} else {
-			$( "#right-panel" ).animate( {right: "-100%"},100 );
+			$( "#right-panel" ).animate( {right: "-100%"},500 );
 		}
 	});
 	
 	$( document ).on( "swipeleft swiperight", "#elcontenido", function( e ) {
 		if ( e.type === "swipeleft"  ) {
-			$( "#right-panel" ).animate( {right: "0"},300 );
+			$( "#right-panel" ).animate( {right: "0"},500 );
 		} else if ( e.type === "swiperight" ) {
-			$( "#left-panel" ).animate( {left: "0"},300 );
+			$( "#left-panel" ).animate( {left: "0"},500 );
 		}
 	});
 	
 	$( document ).on( "swiperight", "#right-panel", function( e ) {
-		$( "#right-panel" ).animate( {right: "-100%"},300 );
+		$( "#right-panel" ).animate( {right: "-100%"},500 );
 	});
 	
 	$( document ).on( "swipeleft", "#left-panel", function( e ) {
-		$( "#left-panel" ).animate( {left: "-100%"},300 );
+		$( "#left-panel" ).animate( {left: "-100%"},500 );
 	});
 	
 	$('.ui-loader').remove();
@@ -65,11 +77,11 @@ $(document).ready(function() {
 });
 
 function cerrarconte() {
-	$( "#contenedor" ).animate( {right: "-100%"},100 );
+	$( "#contenedor" ).animate( {right: "-100%"},500 );
 }
 
 function cerrarconte2() {
-	$( "#contenedor2" ).animate( {right: "-100%"},100 );
+	$( "#contenedor2" ).animate( {right: "-100%"},500 );
 }
 
 function abrirSeccion(seccion) {
@@ -78,12 +90,15 @@ function abrirSeccion(seccion) {
 		url: seccion,
 		success: function (data) {
 			$( "#contenedor" ).html(data);
-			$( "#contenedor" ).animate( {right: "0"},300 );
+			$( "#contenedor" ).animate( {right: "0"},500 );
 			if(seccion=='promociones.html') {
 				configurarPromos();
 			}
 			if(seccion=='tours.html') {
 				configurarTours();
+			}
+			if(seccion=='galeria.html') {
+				getGaleria();
 			}
 		}
 	});
@@ -114,6 +129,31 @@ function configurarPromos() {
 				$('#contenidoPromos').append('<div class="clear"></div>');
 			} else {
 				$('#contenidoPromos').html('No hay promociones.');
+			}
+		}
+	});
+}
+
+var fotoGaleria;
+function getGaleria() {
+	$.ajax({
+		type: 'POST',
+		dataType: 'JSON',
+		url: 'http://www.granhotelverona.com.ar/appContent/apiInfo.php?accion=getGaleria',
+		success: function (data) {
+			if(data.res==true) {
+				$('#imgGaleria').html('');
+				fotoGaleria = data.data;
+				for(var x= 0; x<fotoGaleria.length;x++) {
+					var item = ''+
+					'<div class="itemGalGen" data-itemgal="'+x+'">'+
+					'	<img src="http://www.granhotelverona.com.ar/appContent/timthumb.php?w=150&h=150&src='+fotoGaleria[x].foto+'" class="imgPromoSm"></div>'+
+					'</div>';
+					$('#imgGaleria').append(item);
+				}
+				$('#imgGaleria').append('<div class="clear"></div>');
+			} else {
+				$('#imgGaleria').html('No hay fotos.');
 			}
 		}
 	});
@@ -151,7 +191,7 @@ function abrirSeccion2(plantilla, elemento) {
 		url: plantilla,
 		success: function (data) {
 			$( "#contenedor2" ).html(data);
-			$( "#contenedor2" ).animate( {right: "0"},300 );
+			$( "#contenedor2" ).animate( {right: "0"},500 );
 			if(plantilla=='promociones_interna.html') {
 				$('#promoContInt').html('<img src="http://www.granhotelverona.com.ar/appContent/'+promosciones[elemento].imagen+'" class="imagenPromoB">');
 			}
@@ -189,6 +229,32 @@ function openMap(geocoords, texto) {
 		window.open('maps://?q=' + geocoords, '_system');
 	} else {
 		var label = encodeURI(texto); // encode the label!
-		window.open('geo:0,0?q=' + geocoords + '("' + label + '")', '_system');
+		window.open('geo:0,0?q=' + geocoords + '(' + label + ')', '_system');
 	}
+}
+
+function iniciarGaleria(cual) {
+	var pswpElement = document.querySelectorAll('.pswp')[0];
+	var itemU;
+	var items = [];
+	for(var x= 0; x<fotoGaleria.length;x++) {
+		itemU = {
+			src: 'http://www.granhotelverona.com.ar/appContent/'+fotoGaleria[x].foto,
+			w: fotoGaleria[x].ancho,
+			h: fotoGaleria[x].alto
+		};
+		items.push(itemU);
+	}
+	
+
+	// define options (if needed)
+	var options = {
+		// optionName: 'option value'
+		// for example:
+		index: cual // start at first slide
+	};
+
+	// Initializes and opens PhotoSwipe
+	var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+	gallery.init();
 }

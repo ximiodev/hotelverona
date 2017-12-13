@@ -360,6 +360,14 @@ div.contenidos {
     z-index: 9999999;
 }
 
+.backGeneral {
+	background: #cf6528;
+    background: -moz-linear-gradient(top, #cf6528 0%, #d98d2c 100%);
+    background: -webkit-linear-gradient(top, #cf6528 0%,#d98d2c 100%);
+    background: linear-gradient(to bottom, #cf6528 0%,#d98d2c 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cf6528', endColorstr='#d98d2c',GradientType=0 );
+}
+
 .backSpa {
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#9e1b7f+0,5f246b+100 */
 	background: #9e1b7f; /* Old browsers */
@@ -421,6 +429,18 @@ div.contenidos {
 .promoHead {
 	background: url(../images/fndPromo.jpg) center center no-repeat;
 	background-size: cover;
+}
+
+.contGaleria {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.itemGalGen {
+	width: 25%;
+	margin-bottom: 20px;
+	float: left;
+	padding: 0 10px;
 }
 
 .iconSeccionInt {
