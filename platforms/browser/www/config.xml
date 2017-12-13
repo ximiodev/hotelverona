@@ -24,5 +24,6 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#1A1A1A" />
     <preference name="android-build-tool" value="gradle" />
+    <preference name="orientation" value="portrait" />
     <preference name="StatusBarStyle" value="blacktranslucent" />
 </widget>
