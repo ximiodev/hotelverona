@@ -199,21 +199,21 @@ function getGaleria() {
 	$.ajax({
 		type: 'POST',
 		dataType: 'JSON',
-		url: 'http://www.granhotelverona.com.ar/appContent/apiInfo.php?accion=getGaleria',
+		url: 'http://www.granhotelverona.com.ar/appContent/apiInfo.php?accion=getGaleria2',
 		success: function (data) {
 			if(data.res==true) {
-				$('#imgGaleria').html('');
+				$('#imgGaleria2').html('');
 				fotoGaleria = data.data;
 				for(var x= 0; x<fotoGaleria.length;x++) {
 					var item = ''+
 					'<div class="itemGalGen" data-itemgal="'+x+'">'+
 					'	<img src="http://www.granhotelverona.com.ar/appContent/timthumb.php?w=150&h=150&src='+fotoGaleria[x].foto+'" class="imgPromoSm"></div>'+
 					'</div>';
-					$('#imgGaleria').append(item);
+					$('#imgGaleria2').append(item);
 				}
-				$('#imgGaleria').append('<div class="clear"></div>');
+				$('#imgGaleria2').append('<div class="clear"></div>');
 			} else {
-				$('#imgGaleria').html('No hay fotos.');
+				$('#imgGaleria2').html('No hay fotos.');
 			}
 		}
 	});
