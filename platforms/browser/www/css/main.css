@@ -330,6 +330,18 @@ li.btnMenuUserLink a:active::before, li.btnMenuUserLink.activo a::before {
 }
 
 
+#btnLogin {
+	width: 100%;
+}
+
+.imgHeadInt.loginHead {
+    padding: 40px;
+}
+
+.imgHeadInt.loginHead.sinpad {
+    padding: 0px;
+}
+
 .btnUserEntrar {
     font-family: 'museosans500';
 	padding: 15px 50px;
@@ -413,6 +425,15 @@ div.contenidos {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dd1141', endColorstr='#991735',GradientType=1 ); /* IE6-9 */
 }
 
+.backRegalos {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#dd1141+0,991735+100 */
+	background: #ec73a7; /* Old browsers */
+	background: -moz-linear-gradient(left,  #ec73a7 0%, #c42885 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left,  #ec73a7 0%,#c42885 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  #ec73a7 0%,#c42885 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ec73a7', endColorstr='#c42885',GradientType=1 ); /* IE6-9 */
+}
+
 .btnVolverint {
 	color: #FFF!important;
 	text-decoration: none!important;
@@ -454,8 +475,14 @@ div.contenidos {
 	background-size: cover;
 }
 
+
 .promoHead {
 	background: url(../images/fndPromo.jpg) center center no-repeat;
+	background-size: cover;
+}
+
+.regalosHead {
+	background: url(../images/fndRegalos.jpg) center center no-repeat;
 	background-size: cover;
 }
 
@@ -464,8 +491,18 @@ div.contenidos {
 	background-size: cover;
 }
 
+.loginHead {
+	background: url(../images/fndMenuUser.jpg) center top no-repeat;
+	background-size: cover;
+}
+
 .fndturismoeventos {
 	background: url(../images/fndturismoeventos.jpg) center center no-repeat;
+	background-size: cover;
+}
+
+.fndviajeros {
+	background: url(../images/fndViajeros.jpg) center center no-repeat;
 	background-size: cover;
 }
 
@@ -730,4 +767,73 @@ a.btnComun.backAct.btnRecreaciones {
 
 #txtActInt {
 	margin-top: 30px;
+}
+
+#itemsViajeros {
+	padding: 15px 40px;
+}
+
+#contenidoRegalos {
+	padding: 15px 40px;
+}
+
+#itemsSolicitudes, #itemsNovedades, #itemsAgenda {
+	padding: 15px 40px;
+}
+
+.itemPrograma {
+    border-top: 1px solid #3333;
+    margin: 5px 0;
+    padding: 10px 0;
+    clear: both;
+    font-family: 'museosans500';
+}
+
+.titulodesc {
+    margin: 5px 0;
+    font-size: 24px;
+    color: #34393d;	
+    font-family: 'museosans500';
+}
+
+.direccdesc {
+    margin: 5px 0;
+    color: #34393d;
+    font-size: 18px;
+    font-family: 'museosans500';
+}
+
+.textdesc {
+    margin: 20px 0 10px;
+    color: #dd0000;
+    font-size: 18px;
+    font-family: 'museosans500';
+}
+
+#itemsNovedades .titulodesc, #itemsAgenda .titulodesc {
+    line-height: 24px;
+}
+
+#itemsNovedades .descripciontxt {
+    margin: 5px 0;
+    font-size: 14x;
+    line-height: 14x;
+    color: #34393d;
+    font-family: 'museosans500';
+}
+
+.descuentoRojo {
+    background: #dd0000;
+    display: inline-block;
+    padding: 10px;
+    clear: both;
+    color: #FFF;
+    margin: 5px 0 15px;
+}
+
+.descuentoRojo span {
+	display: block;
+	font-size: 40px;
+    margin-bottom: 10px;
+    line-height: 40px;
 }

@@ -20,13 +20,7 @@ $(document).ready(function() {
 	$('.btnUserEntrar').click(function(e) {
 		e.preventDefault();
 		$( "#left-panel" ).animate( {left: "-100%"},500 );
-		var archivo = $(this).data('archivo');
-		if(loginUser) {
-			abrirSeccion(archivo);
-		} else {
-			extraLogin = {'seccion':archivo};
-			abrirSeccion('login.html');
-		}
+		abrirSeccion('login.html');
 	});
     
 	$('#btnProgramaViaje').click(function(e) {
@@ -51,11 +45,6 @@ $(document).ready(function() {
 	$('.contenidos').on('click', '.btnToursInt',function(e) {
 		e.preventDefault();
 		abrirSeccion2($(this).attr('href'), $(this).data('tour'));
-	});
-    
-	$('.contenidos').on('click', '#btnLogin',function(e) {
-		e.preventDefault();
-		doLogin();
 	});
     
 	$('.contenidos').on('click', '.btnProgramas',function(e) {
@@ -87,28 +76,6 @@ $(document).ready(function() {
 		e.preventDefault();
 		var cual = $(this).data('itemgal');
 		iniciarGaleria(cual);
-	});
-    
-	$('.contenidos').on('click', '.btnPedirRegalo',function(e) {
-		e.preventDefault();
-		var cual = $(this).data('regaid');
-		pedidoRegalo = cual;
-		if(loginUser) {
-			abrirSeccion('form_regalo.html');
-		} else {
-			extraLogin = {'seccion':'form_regalo.html','item':cual};
-			abrirSeccion('login.html');
-		}
-	});
-    
-	$('.contenidos').on('click', '#btnConfirmarRegalo',function(e) {
-		e.preventDefault();
-		if(loginUser) {
-			confirmarRegalo();
-		} else {
-			extraLogin = {'seccion':'form_regalo.html','item':cual};
-			abrirSeccion('login.html');
-		}
 	});
     
 	$('.contenidos').on('click', '.itemGalGen2',function(e) {
@@ -195,9 +162,6 @@ function abrirSeccion(seccion) {
 			if(seccion=='tours.html') {
 				configurarTours();
 			}
-			if(seccion=='regalos.html') {
-				getRegalos();
-			}
 			if(seccion=='galeria.html') {
 				getGaleria();
 			}
@@ -209,18 +173,6 @@ function abrirSeccion(seccion) {
 			}
 			if(seccion=='programa_viajeros.html') {
 				getProgramaViajeros();
-			}
-			if(seccion=='solicitudes.html') {
-				getSolicitudes();
-			}
-			if(seccion=='novedades.html') {
-				getNovedades();
-			}
-			if(seccion=='agenda.html') {
-				getAgenda();
-			}
-			if(seccion=='form_regalo.html') {
-				armarPedidoRegalo();
 			}
 		}
 	});
@@ -342,124 +294,12 @@ function getProgramaViajeros() {
 				programaViajeros = data.data;
 				for(var x= 0; x<programaViajeros.length;x++) {
 					var item = ''+
-					'<div class="itemPrograma">'+
-					'	<div class="descuentoRojo"><span>'+programaViajeros[x].descuento+'%</span>DESCUENTO</div>'+
-					'	<div class="titulodesc">'+programaViajeros[x].titulo+'</div>'+
-					'	<div class="direccdesc">'+programaViajeros[x].direccion+'</div>'+
-					'	<div class="textdesc">'+programaViajeros[x].texto+'</div>'+
-					'</div>';
+					'<div class="itemHabitacion" data-itemhabita="'+x+'">'+programaViajeros[x].titlo+'<i class="fa fa-angle-right" aria-hidden="true"></i></div>';
 					$('#itemsViajeros').append(item);
 				}
 				$('#itemsViajeros').append('<div class="clear"></div>');
 			} else {
 				$('#itemsViajeros').html('No hay promociones.');
-			}
-		}
-	});
-}
-
-var solicitudesArr;
-function getSolicitudes() {
-	$.ajax({
-		type: 'POST',
-		dataType: 'JSON',
-		url: 'http://www.granhotelverona.com.ar/appContent/apiInfo.php?accion=getSolicitudes&user_ID='+userData.ID,
-		success: function (data) {
-			if(data.res==true) {
-				$('#itemsSolicitudes').html('');
-				solicitudesArr = data.data;
-				for(var x= 0; x<solicitudesArr.length;x++) {
-					var item = ''+
-					'<div class="itemPrograma">'+
-					'	<div class="titulodesc">'+solicitudesArr[x].titulo+'</div>'+
-					'	<div class="textdesc">'+fechaNormal(sqlToJsDate(solicitudesArr[x].fecha))+'</div>'+
-					'</div>';
-					$('#itemsSolicitudes').append(item);
-				}
-				$('#itemsSolicitudes').append('<div class="clear"></div>');
-			} else {
-				$('#itemsSolicitudes').html('No hay solicitudes.');
-			}
-		}
-	});
-}
-
-var agendaArr;
-function getAgenda() {
-	$.ajax({
-		type: 'POST',
-		dataType: 'JSON',
-		url: 'http://www.granhotelverona.com.ar/appContent/apiInfo.php?accion=getAgenda',
-		success: function (data) {
-			if(data.res==true) {
-				$('#itemsAgenda').html('');
-				agendaArr = data.data;
-				for(var x= 0; x<agendaArr.length;x++) {
-					var item = ''+
-					'<div class="itemPrograma">'+
-					'	<div class="titulodesc">'+agendaArr[x].titulo+'</div>'+
-					'	<div class="textdesc">'+fechaNormal(sqlToJsDate(agendaArr[x].fecha))+'</div>'+
-					'	<div class="descripciontxt">'+novedadesArr[x].texto+'</div>'+
-					'</div>';
-					$('#itemsAgenda').append(item);
-				}
-				$('#itemsAgenda').append('<div class="clear"></div>');
-			} else {
-				$('#itemsAgenda').html('No hay eventos en la agenda.');
-			}
-		}
-	});
-}
-
-var novedadesArr;
-function getNovedades() {
-	$.ajax({
-		type: 'POST',
-		dataType: 'JSON',
-		url: 'http://www.granhotelverona.com.ar/appContent/apiInfo.php?accion=getNovedades',
-		success: function (data) {
-			if(data.res==true) {
-				$('#itemsNovedades').html('');
-				novedadesArr = data.data;
-				for(var x= 0; x<novedadesArr.length;x++) {
-					var item = ''+
-					'<div class="itemPrograma">'+
-					'	<div class="titulodesc">'+novedadesArr[x].titulo+'</div>'+
-					'	<div class="textdesc">'+fechaNormal(sqlToJsDate(novedadesArr[x].fecha))+'</div>'+
-					'	<div class="descripciontxt">'+novedadesArr[x].texto+'</div>'+
-					'</div>';
-					$('#itemsNovedades').append(item);
-				}
-				$('#itemsNovedades').append('<div class="clear"></div>');
-			} else {
-				$('#itemsNovedades').html('No hay novedades.');
-			}
-		}
-	});
-}
-
-var regalosArr;
-function getRegalos() {
-	$.ajax({
-		type: 'POST',
-		dataType: 'JSON',
-		url: 'http://www.granhotelverona.com.ar/appContent/apiInfo.php?accion=getRegalos',
-		success: function (data) {
-			if(data.res==true) {
-				$('#contenidoRegalos').html('');
-				regalosArr = data.data;
-				for(var x= 0; x<regalosArr.length;x++) {
-					var item = ''+
-					'<div class="itemPrograma">'+
-					'	<div class="titulodesc">'+regalosArr[x].titulo+'</div>'+
-					'	<div class="direccdesc">'+regalosArr[x].precio+'</div>'+
-					'	<button class="btnUserEntrar btnPedirRegalo" data-regaid="'+x+'">Solicitar</button>'+
-					'</div>';
-					$('#contenidoRegalos').append(item);
-				}
-				$('#contenidoRegalos').append('<div class="clear"></div>');
-			} else {
-				$('#contenidoRegalos').html('No hay regalos.');
 			}
 		}
 	});
@@ -489,13 +329,6 @@ function configurarTours() {
 			}
 		}
 	});
-}
-
-var pedidoRegalo;
-function armarPedidoRegalo() {
-	var regalo = regalosArr[pedidoRegalo];
-	
-	$('#descPedido').html('<strong>Nombre:</strong> '+userData.nombre+'<br><strong>Habitacion:</strong> '+userData.habitacion+'<br><strong>Regalo:</strong> '+regalo.titulo+' ('+regalo.precio+')<br>');
 }
 
 var recreacionAr;
@@ -568,44 +401,6 @@ function abrirSeccion3(plantilla, elemento) {
 				$('#titActInt').html(recreacionAr[elemento].titulo);
 				var descRec = recreacionAr[elemento].texto.replace("[[separador]]", '<div class="separadorRec"></div>');
 				$('#txtActInt').html(descRec+'<div class="clear"></div>');
-			}
-		}
-	});
-}
-
-var userData
-function doLogin() {
-	$.ajax({
-		type: 'POST',
-		dataType: 'JSON',
-		data: "user="+$('#user').val()+"&pass="+$('#pass').val()+"",
-		url: 'http://www.granhotelverona.com.ar/appContent/apiInfo.php?accion=getLogin',
-		success: function (data) {
-			if(data.res==true) {
-				//alert("SI");
-				loginUser = true;
-				userData = data.data[0];
-				abrirSeccion(extraLogin.seccion);
-			} else {
-				alert(data.msj);
-			}
-		}
-	});
-}
-
-function confirmarRegalo() {
-	console.log(regalosArr);
-	console.log(pedidoRegalo);
-	$.ajax({
-		type: 'POST',
-		dataType: 'JSON',
-		data: "user_ID="+userData.ID+"&regalo_ID="+regalosArr[pedidoRegalo].ID+"&comentarios="+$('#aclaraciones').val(),
-		url: 'http://www.granhotelverona.com.ar/appContent/apiInfo.php?accion=confirmarRegalo',
-		success: function (data) {
-			if(data.res==true) {
-				abrirSeccion('gracias_regalo.html');
-			} else {
-				alert(data.msj);
 			}
 		}
 	});
@@ -712,33 +507,3 @@ document.addEventListener("backbutton", function(e){
 		$( "#right-panel" ).animate( {right: "-100%"},500 );
 	}
 }, false);
-
-var extraLogin;
-var loginUser = false;
-function sqlToJsDate(sqlDate){
-    var sqlDateArr1 = sqlDate.split(" ");
-    
-    var sqlDateArr2 = sqlDateArr1[0].split("-");
-    var sDay = parseInt(sqlDateArr2[2]);
-    var sMonth = parseInt(sqlDateArr2[1]);
-    var sYear = parseInt(sqlDateArr2[0]);
-    var sqlDateArr3 = sqlDateArr1[1].split(":");
-    var sHour = parseInt(sqlDateArr3[0]);
-    var sMinute = parseInt(sqlDateArr3[1]);
-    var sSecond = parseInt(sqlDateArr3[2]);
-    
-    return new Date(sYear,sMonth,sDay,sHour,sMinute,sSecond,0);
-}
-
-function fechaNormal(quien) {
-  var mm = quien.getMonth() + 1; // getMonth() is zero-based
-  var dd = quien.getDate();
-  console.log(quien);
-  console.log(mm);
-
-  return [
-          (dd>9 ? '' : '0') + dd,
-          (mm>9 ? '' : '0') + mm,
-          quien.getFullYear()
-         ].join('/');
-};
