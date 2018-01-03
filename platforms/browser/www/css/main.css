@@ -810,6 +810,19 @@ a.btnComun.backAct.btnRecreaciones {
     font-family: 'museosans500';
 }
 
+.imgNove {
+    margin: 10px 0 10px;
+    width: 100%;
+    display: block;
+}
+
+.textdescS {
+    margin: 0px 0 10px;
+    color: #dd0000;
+    font-size: 14px;
+    font-family: 'museosans500';
+}
+
 #itemsNovedades .titulodesc, #itemsAgenda .titulodesc {
     line-height: 24px;
 }

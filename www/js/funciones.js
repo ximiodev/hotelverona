@@ -394,12 +394,14 @@ function getAgenda() {
 			if(data.res==true) {
 				$('#itemsAgenda').html('');
 				agendaArr = data.data;
+				var img = "";
 				for(var x= 0; x<agendaArr.length;x++) {
+					img = (agendaArr[x].imagen!='')?'	<img src="http://www.granhotelverona.com.ar/appContent/'+agendaArr[x].imagen+'" class="imgNove" />':'';
 					var item = ''+
 					'<div class="itemPrograma">'+
-					'	<div class="titulodesc">'+agendaArr[x].titulo+'</div>'+
-					'	<div class="textdesc">'+fechaNormal(sqlToJsDate(agendaArr[x].fecha))+'</div>'+
-					'	<div class="descripciontxt">'+novedadesArr[x].texto+'</div>'+
+					'	<div class="textdescS">'+fechaNormal(sqlToJsDate(agendaArr[x].fecha))+'</div>'+
+					'	<div class="titulodesc">'+agendaArr[x].titulo+'</div>'+img+
+					'	<div class="descripciontxt">'+agendaArr[x].texto+'</div>'+
 					'</div>';
 					$('#itemsAgenda').append(item);
 				}
@@ -421,11 +423,13 @@ function getNovedades() {
 			if(data.res==true) {
 				$('#itemsNovedades').html('');
 				novedadesArr = data.data;
+				var img = "";
 				for(var x= 0; x<novedadesArr.length;x++) {
+					img = (novedadesArr[x].imagen!='')?'	<img src="http://www.granhotelverona.com.ar/appContent/'+novedadesArr[x].imagen+'" class="imgNove" />':'';
 					var item = ''+
 					'<div class="itemPrograma">'+
 					'	<div class="titulodesc">'+novedadesArr[x].titulo+'</div>'+
-					'	<div class="textdesc">'+fechaNormal(sqlToJsDate(novedadesArr[x].fecha))+'</div>'+
+					'	<div class="textdesc">'+fechaNormal(sqlToJsDate(novedadesArr[x].fecha))+'</div>'+img+
 					'	<div class="descripciontxt">'+novedadesArr[x].texto+'</div>'+
 					'</div>';
 					$('#itemsNovedades').append(item);

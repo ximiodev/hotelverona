@@ -63,6 +63,12 @@ try {
 					data.title,           // title
 					'Ok'                  // buttonName
 				);
+				$( "#right-panel" ).animate( {right: "0"},500 );
+				secTipo = 98;
+				$('.btnMenuUserLink').removeClass('activo');
+				$('.seccoinMenuUser').removeClass('secActiva');
+				$('#menuNovedades').parent().addClass('activo');
+				$('#menuNovedades').addClass('secActiva');
 				//~ document.getElementById("gcm_id").innerHTML = "<b>"+data.title+"</b>"+data.message;
 			});
 
