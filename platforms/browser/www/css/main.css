@@ -792,6 +792,7 @@ a.btnComun.backAct.btnRecreaciones {
 .titulodesc {
     margin: 5px 0;
     font-size: 24px;
+    line-height: 28px;
     color: #34393d;	
     font-family: 'museosans500';
 }
