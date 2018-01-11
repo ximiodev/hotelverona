@@ -249,7 +249,7 @@ li.btnMenuUserLink a:active::before, li.btnMenuUserLink.activo a::before {
 .btnAct {
 	background: url(../images/btnActividades.png) center center no-repeat;
 	background-size: cover;
-	height: 120px;
+	padding-top: 33.33%;
 	position: relative;
 	display: block;
 }
@@ -257,7 +257,7 @@ li.btnMenuUserLink a:active::before, li.btnMenuUserLink.activo a::before {
 .btnTou {
 	background: url(../images/btnTours.png) center center no-repeat;
 	background-size: cover;
-	height: 120px;
+	padding-top: 33.33%;
 	position: relative;
 	display: block;
 }
@@ -265,7 +265,7 @@ li.btnMenuUserLink a:active::before, li.btnMenuUserLink.activo a::before {
 .btnSpa {
 	background: url(../images/btnSpa.png) center center no-repeat;
 	background-size: cover;
-	height: 120px;
+	padding-top: 33.33%;
 	position: relative;
 	display: block;
 }
@@ -273,7 +273,7 @@ li.btnMenuUserLink a:active::before, li.btnMenuUserLink.activo a::before {
 .btnRes {
 	background: url(../images/btnReservas.png) center center no-repeat;
 	background-size: cover;
-	height: 120px;
+	padding-top: 33.33%;
 	position: relative;
 	display: block;
 }
@@ -281,7 +281,7 @@ li.btnMenuUserLink a:active::before, li.btnMenuUserLink.activo a::before {
 .btnPro {
 	background: url(../images/btnPromociones.png) center center no-repeat;
 	background-size: cover;
-	height: 120px;
+	padding-top: 33.33%;
 	position: relative;
 	display: block;
 	text-indent: -99999999px;
@@ -290,7 +290,7 @@ li.btnMenuUserLink a:active::before, li.btnMenuUserLink.activo a::before {
 .btnReg {
 	background: url(../images/btnRegalos.png) center center no-repeat;
 	background-size: cover;
-	height: 120px;
+	padding-top: 33.33%;
 	position: relative;
 	display: block;
 }
