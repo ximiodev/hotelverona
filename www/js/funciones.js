@@ -735,7 +735,7 @@ function sqlToJsDate(sqlDate){
 }
 
 function fechaNormal(quien) {
-  var mm = quien.getMonth() + 1; // getMonth() is zero-based
+  var mm = quien.getMonth(); // getMonth() is zero-based
   var dd = quien.getDate();
   console.log(quien);
   console.log(mm);
