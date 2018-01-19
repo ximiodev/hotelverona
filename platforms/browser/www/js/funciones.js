@@ -11,6 +11,14 @@ $(document).ready(function() {
 		abrirSeccion($(this).attr('href'));
 	});
     
+	$('.btnCerrarSession').click(function(e) {
+		e.preventDefault();
+		loginUser = false;
+		localStorage.setItem('userlogin', null);
+		localStorage.setItem('sessionUserData', null);
+		$('.closeSession').addClass('hidden');
+	});
+    
 	$('#btnGalerias').click(function(e) {
 		e.preventDefault();
 		$( "#left-panel" ).animate( {left: "-100%"},500 );
@@ -25,7 +33,7 @@ $(document).ready(function() {
 			abrirSeccion(archivo);
 		} else {
 			extraLogin = {'seccion':archivo};
-			abrirSeccion('login.html');
+			abrirSeccionL('login.html');
 		}
 	});
     
@@ -89,6 +97,7 @@ $(document).ready(function() {
 		iniciarGaleria(cual);
 	});
     
+    //regalos
 	$('.contenidos').on('click', '.btnPedirRegalo',function(e) {
 		e.preventDefault();
 		var cual = $(this).data('regaid');
@@ -97,7 +106,7 @@ $(document).ready(function() {
 			abrirSeccion('form_regalo.html');
 		} else {
 			extraLogin = {'seccion':'form_regalo.html','item':cual};
-			abrirSeccion('login.html');
+			abrirSeccionL('login.html');
 		}
 	});
     
@@ -107,7 +116,35 @@ $(document).ready(function() {
 			confirmarRegalo();
 		} else {
 			extraLogin = {'seccion':'form_regalo.html','item':cual};
-			abrirSeccion('login.html');
+			abrirSeccionL('login.html');
+		}
+	});
+    
+    
+    //actividades
+	$('.contenidos').on('click', '.btnReservaAct',function(e) {
+		e.preventDefault();
+		var cual = $(this).data('actid');
+		pedidoAct = cual;
+		if(loginUser) {
+			if(cual=='-1') {
+				abrirSeccionFormu('form_actividad.html', 4);
+			} else {
+				abrirSeccionFormu('form_actividad.html', 5);
+			}
+		} else {
+			extraLogin = {'seccion':'form_actividad.html','item':cual};
+			abrirSeccionL('login.html');
+		}
+	});
+    
+	$('.contenidos').on('click', '#btnConfirmarAct',function(e) {
+		e.preventDefault();
+		if(loginUser) {
+			confirmarAct();
+		} else {
+			extraLogin = {'seccion':'form_actividad.html','item':cual};
+			abrirSeccionL('login.html');
 		}
 	});
     
@@ -164,6 +201,13 @@ $(document).ready(function() {
 	
 	$('.ui-loader').remove();
 	$('.ui-btn-inner').remove();
+	
+	if (sessionId!=null && sessionId!=undefined && sessionId!='null') {
+		console.log(sessionId);
+		loginUser = true;
+		userData = sessionUserData;
+		$('.closeSession').removeClass('hidden');
+	}
 });
 
 function cerrarconte() {
@@ -179,6 +223,43 @@ function cerrarconte2() {
 function cerrarconte3() {
 	$( "#contenedor3" ).animate( {right: "-100%"},500 );
 	secTipo = 2;
+}
+
+function cerrarconteForm() {
+	$( "#contenedorForm" ).animate( {right: "-100%"},500 );
+	if(secTipo=4) {	
+		secTipo = 2;
+	} else {
+		secTipo = 3;
+	}
+}
+
+function cerrarconteLog() {
+	$( "#contenedorLog" ).animate( {right: "-100%"},500 );
+}
+
+function abrirSeccionL(seccion) {
+	$.ajax({
+		type: 'GET',
+		url: seccion,
+		success: function (data) {
+			$( "#contenedorLog" ).html(data);
+			$( "#contenedorLog" ).animate( {right: "0"},500 );
+		}
+	});
+}
+
+function abrirSeccionFormu(seccion, t) {
+	$.ajax({
+		type: 'GET',
+		url: seccion,
+		success: function (data) {
+			secTipo = t;
+			$( "#contenedorForm" ).html(data);
+			$( "#contenedorForm" ).animate( {right: "0"},500 );
+			armarPedidoAct();
+		}
+	});
 }
 
 function abrirSeccion(seccion) {
@@ -222,6 +303,7 @@ function abrirSeccion(seccion) {
 			if(seccion=='form_regalo.html') {
 				armarPedidoRegalo();
 			}
+			
 		}
 	});
 }
@@ -386,22 +468,30 @@ function getSolicitudes() {
 
 var agendaArr;
 function getAgenda() {
+	var userid = 0;
+	if(loginUser) {
+		userid = userData.ID;
+	}
 	$.ajax({
 		type: 'POST',
 		dataType: 'JSON',
-		url: 'http://www.granhotelverona.com.ar/appContent/apiInfo.php?accion=getAgenda',
+		url: 'http://www.granhotelverona.com.ar/appContent/apiInfo.php?accion=getAgenda&userid='+userid,
 		success: function (data) {
 			if(data.res==true) {
 				$('#itemsAgenda').html('');
 				agendaArr = data.data;
 				var img = "";
+				var hora = "";
+				var textoageA;
 				for(var x= 0; x<agendaArr.length;x++) {
 					img = (agendaArr[x].imagen!='')?'	<img src="http://www.granhotelverona.com.ar/appContent/'+agendaArr[x].imagen+'" class="imgNove" />':'';
+					textoageA = agendaArr[x].texto.split('[[separador]]');
+					hora = (agendaArr[x].hora_turno!='')?agendaArr[x].hora_turno:'';
 					var item = ''+
 					'<div class="itemPrograma">'+
-					'	<div class="textdescS">'+fechaNormal(sqlToJsDate(agendaArr[x].fecha))+'</div>'+
+					'	<div class="textdescS">'+fechaNormal(sqlToJsDate(agendaArr[x].fecha))+' '+hora+'</div>'+
 					'	<div class="titulodesc">'+agendaArr[x].titulo+'</div>'+img+
-					'	<div class="descripciontxt">'+agendaArr[x].texto+'</div>'+
+					'	<div class="descripciontxt">'+textoageA[0]+'</div>'+
 					'</div>';
 					$('#itemsAgenda').append(item);
 				}
@@ -502,6 +592,19 @@ function armarPedidoRegalo() {
 	$('#descPedido').html('<strong>Nombre:</strong> '+userData.nombre+'<br><strong>Habitacion:</strong> '+userData.habitacion+'<br><strong>Regalo:</strong> '+regalo.titulo+' ('+regalo.precio+')<br>');
 }
 
+var pedidoAct;
+function armarPedidoAct() {
+	var act;
+	var eltitulo;
+	if(pedidoAct!='-1') {
+		eltitulo = recreacionAr[pedidoAct].titulo;
+	} else {
+		eltitulo = 'PROGRAMA Baño de luna.';
+	}
+	
+	$('#descPedido').html('<strong>Nombre:</strong> '+userData.nombre+'<br><strong>Habitacion:</strong> '+userData.habitacion+'<br><strong>Regalo:</strong> '+eltitulo+'<br>');
+}
+
 var recreacionAr;
 function getRecreacion() {
 	$.ajax({
@@ -548,6 +651,7 @@ function abrirSeccion2(plantilla, elemento) {
 				$('.habitaHead').attr('style','background-image: url(http://www.granhotelverona.com.ar/appContent/'+habitacionesAr[elemento].foto+');');
 				$('.seccionTit').html(habitacionesAr[elemento].titlo);
 				$('#descHabita').html(habitacionesAr[elemento].descripcion+'<div class="clear"></div>');
+				$('#linkcomparte').attr('href', "javascript:compartirEnlace('"+habitacionesAr[elemento].url+"')");
 			}
 			if(plantilla=='recreacion.html') {
 				getRecreacion();
@@ -567,11 +671,15 @@ function abrirSeccion3(plantilla, elemento) {
 			$( "#contenedor3" ).html(data);
 			$( "#contenedor3" ).animate( {right: "0"},500 );
 			if(plantilla=='recreacion_interna.html') {
-				console.log(elemento);
 				$('#imgActInt').attr('style','background-image: url(http://www.granhotelverona.com.ar/appContent/'+recreacionAr[elemento].foto+');');
 				$('#titActInt').html(recreacionAr[elemento].titulo);
 				var descRec = recreacionAr[elemento].texto.replace("[[separador]]", '<div class="separadorRec"></div>');
 				$('#txtActInt').html(descRec+'<div class="clear"></div>');
+				if(recreacionAr[elemento].reserva==1) {
+					$('#btnparareservar').html('<a href="#" class="btnComun backAct btnReservaAct" data-tipo="recreacion" data-actid="'+elemento+'">RESERVAR</a>');
+				} else {
+					$('#btnparareservar').html('');
+				}
 			}
 		}
 	});
@@ -588,8 +696,17 @@ function doLogin() {
 			if(data.res==true) {
 				//alert("SI");
 				loginUser = true;
+				localStorage.setItem('userlogin', data.data[0].ID);
+				localStorage.setItem('sessionUserData', JSON.stringify(data.data[0]));
+				$('.closeSession').removeClass('hidden');
 				userData = data.data[0];
-				abrirSeccion(extraLogin.seccion);
+				cerrarconteLog();
+				if(extraLogin.seccion=='form_actividad.html') {
+					var tise = (extraLogin.item=='-1')?4:5;
+					abrirSeccionFormu(extraLogin.seccion, tise);
+				} else {
+					abrirSeccion(extraLogin.seccion);
+				}
 			} else {
 				alert(data.msj);
 			}
@@ -608,6 +725,25 @@ function confirmarRegalo() {
 		success: function (data) {
 			if(data.res==true) {
 				abrirSeccion('gracias_regalo.html');
+			} else {
+				alert(data.msj);
+			}
+		}
+	});
+}
+
+function confirmarAct() {
+	
+	var actividadID = (pedidoAct=='-1')?0:recreacionAr[pedidoAct].ID;
+	$.ajax({
+		type: 'POST',
+		dataType: 'JSON',
+		data: "user_ID="+userData.ID+"&actividad_ID="+actividadID+"&comentarios="+$('#aclaracionesB').val(),
+		url: 'http://www.granhotelverona.com.ar/appContent/apiInfo.php?accion=confirmarAct',
+		success: function (data) {
+			if(data.res==true) {
+				var tise = (pedidoAct=='-1')?4:5;
+				abrirSeccionFormu('gracias_actividad.html', tise);
 			} else {
 				alert(data.msj);
 			}
@@ -719,6 +855,8 @@ document.addEventListener("backbutton", function(e){
 
 var extraLogin;
 var loginUser = false;
+var sessionId = localStorage.getItem('userlogin');
+var sessionUserData = JSON.parse(localStorage.getItem('sessionUserData'));
 function sqlToJsDate(sqlDate){
     var sqlDateArr1 = sqlDate.split(" ");
     
@@ -735,7 +873,7 @@ function sqlToJsDate(sqlDate){
 }
 
 function fechaNormal(quien) {
-  var mm = quien.getMonth() + 1; // getMonth() is zero-based
+  var mm = quien.getMonth(); // getMonth() is zero-based
   var dd = quien.getDate();
   console.log(quien);
   console.log(mm);

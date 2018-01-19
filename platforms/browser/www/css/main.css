@@ -210,6 +210,20 @@ li.btnMenuUserLink a:active::before, li.btnMenuUserLink.activo a::before {
 	position: relative;
 }
 
+a.btnCerrarSession {
+    padding: 5px 0!important;
+    font-size: 11px;
+}
+
+.closeSession {
+    position: relative;
+    height: 0;
+    width: 100px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
 .logo {
 	background: url(../images/logo.png) center center no-repeat;
 	background-size: contain;
