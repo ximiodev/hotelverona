@@ -2,22 +2,35 @@
 			<div class="headInt backAct">
 				<a href="javascript:cerrarconte2();" class="btnVolverint" data-quien="contenedor"><i class="fa fa-angle-left" aria-hidden="true"></i> Volver</a> <img src="images/logoInterno.png">
 			</div>
-			<div class="imgHeadInt actHead" style="background-image: url(images/fndProgramas.jpg);">
+			<div class="imgHeadInt actHead" id="programaImagen" style="background-image: url(images/fndProgramas.jpg);">
 				<div class="seccionTit">PROGRAMAS</div>
 			</div>
 			<div class="textoInterno noraml superpadd">
-				"Diseñamos este programa para conectarte con tu interior".<br>
+				<div id="contenidoprograma">
+					"Diseñamos este programa para conectarte con tu interior".<br>
+					<br>
+					Lo llamamos "Baño de Luna".<br>
+					<br>
+					Nuestra propuesta comienza con un Circuito Hídrico ( Sauna, Hidromasaje ) durante la mañana.<br>
+					Los esperamos al caer el sol con nuestra Maestra .... con la práctica ancestral de Yoga Nidra , tendrán a su disposición Infusiones naturales (Jugo/te) y al finalizar la experiencia brindaremos una cena saludable de luz tenue.<br>
+					<br>
+					ACTIVIDAD CON COSTO ADICIONAL<br>
+					<br>
+					REQUIERE RESERVA PREVIA
+					<br>
+				</div>
 				<br>
-				Lo llamamos "Baño de Luna".<br>
-				<br>
-				Nuestra propuesta comienza con un Circuito Hídrico ( Sauna, Hidromasaje ) durante la mañana.<br>
-				Los esperamos al caer el sol con nuestra Maestra .... con la práctica ancestral de Yoga Nidra , tendrán a su disposición Infusiones naturales (Jugo/te) y al finalizar la experiencia brindaremos una cena saludable de luz tenue.<br>
-				<br>
-				ACTIVIDAD CON COSTO ADICIONAL<br>
-				<br>
-				REQUIERE RESERVA PREVIA
-				<br>
-				<br>
-				<div class="contBtn"><a href="#" class="btnComun backAct btnReservaAct" data-tipo="programa" data-actid="-1">RESERVAR</a></div>
+				<div id="btnReserva" class="contBtn"><a href="#" class="btnComun backAct btnReservaAct" data-tipo="programa" data-actid="-1">RESERVAR</a></div>
 				
 			</div>
+<script>
+	//~ alert(configuraciones[0].valor);
+	$('#contenidoprograma').html(configuraciones['programacontenido']);
+	$('#programaImagen').css({'background-image':'url('+configuraciones['programaImagen']+')'});
+	if(configuraciones['programaReserva']=="si") {
+		$('#btnReserva').show();
+	} else {
+		$('#btnReserva').hide();
+	}
+</script>
+

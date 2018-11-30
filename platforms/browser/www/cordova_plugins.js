@@ -282,6 +282,22 @@ module.exports = [
         "runs": true
     },
     {
+        "file": "plugins/cordova-plugin-socialsharing/www/SocialSharing.js",
+        "id": "cordova-plugin-socialsharing.SocialSharing",
+        "pluginId": "cordova-plugin-socialsharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-socialsharing/www/SocialSharing.js",
+        "id": "cordova-plugin-socialsharing.SocialSharing",
+        "pluginId": "cordova-plugin-socialsharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
+    },
+    {
         "file": "plugins/es6-promise-plugin/www/promise.js",
         "id": "es6-promise-plugin.Promise",
         "pluginId": "es6-promise-plugin",
@@ -293,6 +309,23 @@ module.exports = [
         "pluginId": "cordova-plugin-x-socialsharing",
         "clobbers": [
             "window.plugins.socialsharing"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/src/browser/InAppBrowserProxy.js",
+        "id": "cordova-plugin-inappbrowser.InAppBrowserProxy",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "merges": [
+            ""
         ]
     }
 ];
@@ -309,8 +342,10 @@ module.exports.metadata =
     "cordova-plugin-file": "5.0.0",
     "cordova-plugin-media": "4.0.0",
     "cordova-plugin-device": "1.1.7",
+    "cordova-plugin-socialsharing": "4.3.81",
     "es6-promise-plugin": "4.1.0",
-    "cordova-plugin-x-socialsharing": "5.2.1"
+    "cordova-plugin-x-socialsharing": "5.2.1",
+    "cordova-plugin-inappbrowser": "1.3.0"
 }
 // BOTTOM OF METADATA
 });

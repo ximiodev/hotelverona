@@ -37,6 +37,9 @@
         },
         "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.ar.granhotelverona"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ar.granhotelverona"
         }
     },
     "dependent_plugins": {

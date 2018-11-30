@@ -8,10 +8,13 @@
 			<div class="textoInterno">
 				Pueden realizar su reserva de habitación desde nuestra plataforma online haciendo click en el siguiente botón<br>
 				<br>
-				<div class="contBtn"><a href="#" onclick="window.open('https://book.ip-hoteles.com/wbeIPH024/es/index/step1?PHPSESSID=263274c4fa065cb29d7729eca23a0009', '_system');" class="btnComun backRes">RESERVAR</a></div>
+				<div class="contBtn" id="botondereserva"><a href="#" onclick="window.open('https://book.ip-hoteles.com/wbeIPH024/es/index/step1?PHPSESSID=263274c4fa065cb29d7729eca23a0009', '_system');" class="btnComun backRes">RESERVAR</a></div>
 				<br>
 				Se puede contactar al centro de reservas todos los días de 09:00 a 22:00.<br><br>
 				Reservas:<br>
-				+54 (02257) 423175<br>
-				+54 (02257) 423732
+				<a href="#" onclick="window.open('tel:+542257423175', '_system');" target="_system">+54 (02257) 423175</a><br>
+				<a href="#" onclick="window.open('tel:+542257423732', '_system');" target="_system">+54 (02257) 423732</a>
 			</div>
+<script>
+	$('#botondereserva').html('<a href="#" onclick="window.open(\''+configuraciones['linkReservas']+'\', \'_system\');" class="btnComun backRes">RESERVAR</a>');
+</script>

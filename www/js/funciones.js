@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	configurarApp();
     
 	$('.btnMenu').click(function(e) {
 		e.preventDefault();
@@ -334,6 +335,22 @@ function configurarPromos() {
 				$('#contenidoPromos').append('<div class="clear"></div>');
 			} else {
 				$('#contenidoPromos').html('No hay promociones.');
+			}
+		}
+	});
+}
+
+var configuraciones;
+function configurarApp() {
+	$.ajax({
+		type: 'POST',
+		dataType: 'JSON',
+		url: 'http://www.granhotelverona.com.ar/appContent/apiInfo.php?accion=getConfiguracion',
+		success: function (data) {
+			if(data.res==true) {
+				configuraciones = data.data;
+			} else {
+				configuraciones = null;
 			}
 		}
 	});
