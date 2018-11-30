@@ -292,6 +292,9 @@ function abrirSeccion(seccion) {
 			if(seccion=='programa_viajeros.html') {
 				getProgramaViajeros();
 			}
+			if(seccion=='reservas.html') {
+				$('#botondereserva').html('<a href="#" onclick="window.open(\''+configuraciones['linkReservas']+'\', \'_system\');" class="btnComun backRes">RESERVAR</a>');
+			}
 			if(seccion=='solicitudes.html') {
 				getSolicitudes();
 			}
@@ -674,6 +677,13 @@ function abrirSeccion2(plantilla, elemento) {
 				getRecreacion();
 			}
 			if(plantilla=='programas.html') {
+				$('#contenidoprograma').html(configuraciones['programacontenido']);
+				$('#programaImagen').css({'background-image':'url('+configuraciones['programaImagen']+')'});
+				if(configuraciones['programaReserva']=="si") {
+					$('#btnReserva').show();
+				} else {
+					$('#btnReserva').hide();
+				}
 			}
 		}
 	});
